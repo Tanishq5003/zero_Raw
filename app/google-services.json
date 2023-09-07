@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "264005245656",
+    "project_id": "zero-raw",
+    "storage_bucket": "zero-raw.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264005245656:android:fd53c10bc2354dc05fd5ad",
+        "android_client_info": {
+          "package_name": "com.example.zeroraw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264005245656-ugve62ei6ui79gkf6rp7puoqrqdq4n8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrSS4pnt-hsk6GBceCJJr0QIiCwwwFeRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264005245656-ugve62ei6ui79gkf6rp7puoqrqdq4n8u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
