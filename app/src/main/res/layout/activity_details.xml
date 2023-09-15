@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Details">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Area Details :"
+            android:textSize="16sp"
+            android:id="@+id/area_text"
+            android:textStyle="bold"
+            android:layout_marginTop="55dp"
+            android:layout_marginStart="25dp"/>
+
+        <EditText
+            android:id="@+id/area_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_box"
+            android:hint="Total Area"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/basement"
+            android:layout_marginTop="25dp"/>
+        <EditText
+            android:id="@+id/area_buildup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_box"
+            android:hint="Buildup Area"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/area_total"
+            android:layout_marginTop="25dp"/>
+        <EditText
+            android:id="@+id/area_carpet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_box"
+            android:hint="Carpet Area"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/area_buildup"
+            android:layout_marginTop="25dp"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/floors"
+            android:layout_below="@+id/area_carpet"
+            android:background="@drawable/edit_text_box"
+            android:hint="Number of floors"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/basement_text"
+            android:text="Is there a basement?"
+            android:layout_below="@+id/area_text"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="25dp"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/basement"
+            android:layout_below="@+id/basement_text"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="45dp">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:id="@+id/basement_yes"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:layout_marginStart="25dp"
+                android:id="@+id/basement_no"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"/>
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Additional Details: "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:id="@+id/details_text"
+            android:layout_below="@+id/floors"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="25sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Are there any other rooms available?"
+            android:layout_below="@+id/details_text"
+            android:id="@+id/other_text"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="25dp"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:text="Pooja Room"
+                android:layout_below="@+id/details_text"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:id="@+id/pooja"
+                android:layout_marginStart="65dp"
+                />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:id="@+id/servant"
+                android:layout_below="@+id/pooja"
+                android:text="Servant Room"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="55dp"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:id="@+id/study"
+                android:layout_below="@+id/servant"
+                android:text="Study Room"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="55dp"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:id="@+id/other"
+                android:text="Others"
+                android:layout_below="@+id/study"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/other"
+            android:text="Furnishing Status "
+            android:layout_marginStart="25dp"
+            android:id="@+id/furnishing_text"
+            android:layout_marginTop="15dp"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/furnishing_text"
+            android:id="@+id/furnishing"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="55dp">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/furnished"
+                android:text="Furnished"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/not_furnished"
+                android:layout_marginStart="25dp"
+                android:text="Not Furnished"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"/>
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/furnishing"
+            android:text="Are there any parking avalable? "
+            android:layout_marginStart="25dp"
+            android:id="@+id/parking_text"
+            android:layout_marginTop="15dp"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/parking_text"
+            android:id="@+id/parking"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="55dp">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/parking_yes"
+                android:text="Yes"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/parking_no"
+                android:layout_marginStart="25dp"
+                android:text="No"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"/>
+        </RadioGroup>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/parking"
+            android:layout_margin="55dp"
+            android:layout_centerHorizontal="true"
+            android:text="Submit and review"/>
+    </RelativeLayout>
+
+</ScrollView>

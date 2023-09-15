@@ -1,138 +1,424 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Listing">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_margin="20dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/baseline_add_a_photo_24"
-        android:id="@+id/photo1"/>
+        <ImageView
+            android:id="@+id/photo1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/baseline_add_a_photo_24" />
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_margin="20dp"
-        android:src="@drawable/baseline_add_a_photo_24"
-        android:id="@+id/photo2"
-        android:layout_toEndOf="@+id/photo1"/>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/baseline_add_a_photo_24"
+            android:id="@+id/photo2"
+            android:layout_toEndOf="@+id/photo1"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/photo1"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/address"
-        android:layout_marginTop="20dp"
-        android:hint="Address of the property"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/address"
-        android:text="Kind of Property: "
-        android:layout_marginTop="25dp"
-        android:id="@+id/type"
-        android:layout_marginLeft="60dp"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/type"
-        android:layout_below="@+id/address"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="30dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="Residential"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/type"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Listing Price"
-        android:id="@+id/price"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Property Type :"
-        android:layout_below="@+id/price"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:id="@+id/select"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-    <RadioGroup
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Radio"
-        android:orientation="vertical"
-        android:layout_below="@+id/select"
-        android:layout_marginTop="20dp">
-        <LinearLayout
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-        <RadioButton
+            android:layout_below="@+id/photo1"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/address"
+            android:layout_marginTop="20dp"
+            android:hint="Address of the property"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apartment"
-            android:button="@android:color/transparent"
-            android:background="@drawable/radio_selector"
-            android:elevation="4dp"
-            android:id="@+id/apartment"
-            android:layout_margin="10dp"/>
-        <RadioButton
+            android:layout_below="@+id/address"
+            android:text="Kind of Property: "
+            android:layout_marginTop="25dp"
+            android:id="@+id/type"
+            android:layout_marginLeft="60dp"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Independent House/Villa"
-            android:id="@+id/villa"/>
-        </LinearLayout>
-        <RadioButton
+            android:layout_toRightOf="@+id/type"
+            android:layout_below="@+id/address"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Residential"/>
+
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Independent/Builder Floor"
-            android:id="@+id/floor"
+            android:layout_below="@+id/type"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:hint="Listing Price"
+            android:id="@+id/price"
             />
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="Select Property Type :"
+            android:layout_below="@+id/price"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/select"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <RadioGroup
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Radio"
+            android:orientation="vertical"
+            android:layout_below="@+id/select"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="35dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apartment"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp"
+                android:id="@+id/apartment"
+                android:layout_margin="10dp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Independent House/Villa"
+                android:id="@+id/villa"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Independent/Builder Floor"
+                android:id="@+id/floor"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp"
+                />
+
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="1 Rk/Studio Apartment"
-                android:id="@+id/studio"/>
+                android:id="@+id/studio"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Serviced Apartment"
-                android:id="@+id/serviced"/>
-        </LinearLayout>
-    </RadioGroup>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Radio"
-        android:layout_marginTop="10dp"
-        android:text="Submit and Next"
-        android:layout_centerHorizontal="true"/>
+                android:id="@+id/serviced"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Radio"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:text="Add Room Details :"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/nbed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/room"
+            android:layout_marginStart="25dp"
+            android:text="Number of bedrooms: "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="25dp"
+            android:id="@+id/beds"
+            android:layout_below="@+id/nbed">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_margin="5dp"
+                android:id="@+id/bed1"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:layout_margin="5dp"
+                android:id="@+id/bed2"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:layout_margin="5dp"
+                android:id="@+id/bed3"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:layout_margin="5dp"
+                android:id="@+id/bed4"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="5"
+                android:id="@+id/bed5"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5+"
+                android:layout_margin="5dp"
+                android:id="@+id/bed5p"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+        </RadioGroup>
+
+
+
+        <TextView
+            android:id="@+id/nbath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/beds"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+
+            android:text="Number of bathrooms: "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="25dp"
+            android:id="@+id/baths"
+            android:layout_below="@+id/nbath">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_margin="5dp"
+                android:id="@+id/bath1"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:id="@+id/bath2"
+                android:layout_margin="5dp"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:layout_margin="5dp"
+                android:id="@+id/bath3"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:layout_margin="5dp"
+                android:id="@+id/bath4"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:layout_margin="5dp"
+                android:id="@+id/bath5"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5+"
+                android:layout_margin="5dp"
+                android:id="@+id/bath5p"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_selector"
+                android:elevation="4dp">
+            </RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/nbal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/baths"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="Number of balconies: "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/bals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nbal"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingStart="25dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/bal1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="4dp"
+                android:text="1"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/bal2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="4dp"
+                android:text="2"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/bal3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="4dp"
+                android:text="3"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/bal4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="4dp"
+                android:text="4"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/bal5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="4dp"
+                android:text="5"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/bal5p"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="4dp"
+                android:text="5+"></RadioButton>
+        </RadioGroup>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm and Next"
+            android:layout_below="@+id/bals"
+            android:layout_margin="35dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/next"/>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</ScrollView>
