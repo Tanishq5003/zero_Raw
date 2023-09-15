@@ -1,5 +1,6 @@
 package com.example.zeroraw
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -43,8 +44,10 @@ class Listing : AppCompatActivity() {
 
         photo1.setOnClickListener {
             contact1.launch("image/*")
-
         }
+        // Capture the drawing cache inside onActivityResult or wherever you handle the image selection result
+
+
         photo2.setOnClickListener {
             contact2.launch("image/*")
 
@@ -165,22 +168,36 @@ class Listing : AppCompatActivity() {
 //        photo2.isDrawingCacheEnabled = false
 
         next.setOnClickListener {
-//            photo1.isDrawingCacheEnabled = true
-//            photo1.buildDrawingCache(true)
-//            var bitmap1: Bitmap = photo1.drawingCache
-//            if (bitmap1!= null){
-//                intent.putExtra("photo1", bitmap1)
-//                Log.d("Photo1", "Photo converted to bitmap")
-//            }
 
             startActivity(intent)
         }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == 123 && resultCode == Activity.RESULT_OK) {
+            // Handle the image selection here
+            val selectedImageUri = data?.data
 
+            // Check if selectedImageUri is not null and proceed to capture the drawing cache
+            if (selectedImageUri != null) {
+                // Set the selected image to the ImageView
+                photo1.setImageURI(selectedImageUri)
 
+                // Capture the drawing cache
+                photo1.isDrawingCacheEnabled = true
+                photo1.buildDrawingCache(true)
+                val bitmap1: Bitmap? = photo1.drawingCache
 
+                if (bitmap1 != null) {
+                    // You have a valid Bitmap. You can use it here.
+                    intent.putExtra("photo1", bitmap1)
+                    Log.d("Photo1", "Photo converted to bitmap")
+                }
 
-
-
+                // Clean up the drawing cache
+                photo1.isDrawingCacheEnabled = false
+            }
+        }
     }
 }
