@@ -115,7 +115,7 @@
                 android:background="@drawable/radio_selector"
                 android:button="@android:color/transparent"
                 android:id="@+id/pooja"
-                android:layout_marginStart="65dp"
+                android:layout_marginStart="55dp"
                 />
             <CheckBox
                 android:layout_width="wrap_content"
