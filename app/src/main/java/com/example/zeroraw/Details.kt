@@ -1,9 +1,11 @@
 package com.example.zeroraw
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioGroup
@@ -29,10 +31,12 @@ class Details : AppCompatActivity() {
     lateinit var parking: String
     lateinit var otherRooms: ArrayList<String>
     lateinit var intent1  :Intent
+    lateinit var submit: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
-        basement_text = findViewById(R.id.basement_text)
+        basement_text = findViewById(R.id.basement)
         basement_text.setOnCheckedChangeListener{ group , checkedId ->
             when(checkedId){
                 R.id.basement_yes ->{
@@ -73,6 +77,9 @@ class Details : AppCompatActivity() {
         servant = findViewById(R.id.servant)
         study = findViewById(R.id.study)
         other = findViewById(R.id.other)
+        otherRooms = ArrayList<String>()
+        intent1 = Intent(this, FinalReview::class.java)
+        submit = findViewById(R.id.button)
         pooja.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
             otherRooms.add("Pooja Room")
@@ -115,5 +122,30 @@ class Details : AppCompatActivity() {
         val nbath = intent.getStringExtra("nbath")
         val photo1 = intent.getIntExtra("photo1", 0)
         val photo2 = intent.getIntExtra("photo2", 0)
+
+        submit.setOnClickListener {
+            totalArea_text = totalArea.text.toString()
+            carpetArea_text = carpetArea.text.toString()
+            buildupArea_text = buildupArea.text.toString()
+            totalFloors_text = totalFloors.text.toString()
+            intent1.putExtra("Total Area", totalArea_text)
+            intent1.putExtra("Carpet Area", carpetArea_text)
+            intent1.putExtra("Buildup Area", buildupArea_text)
+            intent1.putExtra("Floors", totalFloors_text)
+            intent1.putExtra("Address", address)
+            intent1.putExtra("Price", price)
+            intent1.putExtra("nbes", nbed)
+            intent1.putExtra("Property Type", type)
+            intent1.putExtra("nbal", nbal)
+            intent1.putExtra("nbath", nbath)
+            intent1.putExtra("photo1", photo1)
+            intent1.putExtra("photo2", photo2)
+            intent1.putExtra("Parking", parking)
+            intent1.putExtra("Furnished", furnished)
+            intent1.putExtra("Basement", basement)
+            intent1.putStringArrayListExtra("Rooms", otherRooms)
+            Log.d("All intents passes", "Intents Sucessful")
+            startActivity(intent1)
+        }
         }
     }
