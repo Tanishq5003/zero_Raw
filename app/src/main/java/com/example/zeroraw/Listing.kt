@@ -223,8 +223,10 @@ class Listing : AppCompatActivity() {
 
             // Check if selectedImageUri is not null and proceed to capture the drawing cache
             if (selectedImageUri != null) {
+
                 // Set the selected image to the ImageView
                 photo1.setImageURI(selectedImageUri)
+
 
                 // Capture the drawing cache
                 photo1.isDrawingCacheEnabled = true
