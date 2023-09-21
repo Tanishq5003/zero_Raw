@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -18,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import java.util.ArrayList
 import kotlin.random.Random
 
+@Suppress("DEPRECATION")
 class FinalReview : AppCompatActivity() {
     lateinit var photo1: ImageView
     lateinit var photo2: ImageView
@@ -63,9 +65,11 @@ class FinalReview : AppCompatActivity() {
         database = Firebase.database.reference
 
         val intentFromDetails: Intent = intent
-        val photoOne = intentFromDetails.getIntExtra("photo1", 0)
-        val bitmap1 = BitmapFactory.decodeResource(resources , photoOne)
-        photo1.setImageBitmap(bitmap1)
+        val photoOne = intentFromDetails.getParcelableExtra<Uri>("photo1", )
+        photo1.setImageURI(photoOne)
+        val photoTwo = intentFromDetails.getParcelableExtra<Uri>("photo2", )
+        photo2.setImageURI(photoTwo)
+
 
 
         val basement: String? = intentFromDetails.getStringExtra("Basement")

@@ -2,6 +2,7 @@ package com.example.zeroraw
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioGroup
 
+@Suppress("DEPRECATION")
 class Details : AppCompatActivity() {
     lateinit var basement_text: RadioGroup
     lateinit var basement: String
@@ -120,8 +122,9 @@ class Details : AppCompatActivity() {
         val nbed = intent.getStringExtra("nbed")
         val nbal = intent.getStringExtra("nbal")
         val nbath = intent.getStringExtra("nbath")
-        val photo1 = intent.getIntExtra("photo1", 0)
-        val photo2 = intent.getIntExtra("photo2", 0)
+
+        val photo1 = intent.getParcelableExtra<Uri>("IMAGE_URI_1")
+        val photo2 = intent.getParcelableExtra<Uri>("IMAGE_URI_2")
 
         submit.setOnClickListener {
             totalArea_text = totalArea.text.toString()

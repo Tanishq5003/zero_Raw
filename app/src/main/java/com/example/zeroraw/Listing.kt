@@ -3,6 +3,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -16,6 +17,9 @@ import com.example.zeroraw.R
 
 @Suppress("DEPRECATION")
 class Listing : AppCompatActivity() {
+    private val PICK_IMAGE_REQUEST_CODE = 1
+    private var imageUri1: Uri? = null
+    private var imageUri2: Uri? = null
     private lateinit var radio: RadioGroup
     private lateinit var bed: RadioGroup
     private lateinit var bal: RadioGroup
@@ -28,12 +32,7 @@ class Listing : AppCompatActivity() {
     lateinit var nbed: String
     lateinit var nbath: String
     lateinit var nbal: String
-    private val contact1 = registerForActivityResult(ActivityResultContracts.GetContent()){
-        photo1.setImageURI(it)
-    }
-    private val contact2 = registerForActivityResult(ActivityResultContracts.GetContent()){
-        photo2.setImageURI(it)
-    }
+
     lateinit var next: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,14 +54,17 @@ class Listing : AppCompatActivity() {
 
 
         photo1.setOnClickListener {
-            contact1.launch("image/*")
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
         }
         // Capture the drawing cache inside onActivityResult or wherever you handle the image selection result
 
 
         photo2.setOnClickListener {
-            contact2.launch("image/*")
-
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
         }
         radio.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId){
@@ -211,49 +213,26 @@ class Listing : AppCompatActivity() {
             intent.putExtra("nbed", nbed)
             intent.putExtra("nbath", nbath)
             intent.putExtra("nbal", nbal)
+            intent.putExtra("IMAGE_URI_1", imageUri1)
+            intent.putExtra("IMAGE_URI_2", imageUri2)
             startActivity(intent)
         }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 123 && resultCode == Activity.RESULT_OK) {
-            // Handle the image selection here
-            var selectedImageUri = data?.data
+        if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
+            // Get the image URI from the Intent.
+            val imageUri = data?.data
 
-            // Check if selectedImageUri is not null and proceed to capture the drawing cache
-            if (selectedImageUri != null) {
+            // Set the image URI for the ImageView.
+            if (imageUri1 == null) {
+                imageUri1 = imageUri
+                photo1.setImageURI(imageUri1)
+            } else {
 
-                // Set the selected image to the ImageView
-                photo1.setImageURI(selectedImageUri)
-
-
-                // Capture the drawing cache
-                photo1.isDrawingCacheEnabled = true
-                photo1.buildDrawingCache(true)
-                val bitmap1: Bitmap? = photo1.drawingCache
-
-                if (bitmap1 != null) {
-                    // You have a valid Bitmap. You can use it here.
-                    intent.putExtra("photo1", bitmap1)
-                    Log.d("Photo1", "Photo converted to bitmap")
-                }
-
-                // Clean up the drawing cache
-                photo1.isDrawingCacheEnabled = false
-
-                photo2.setImageURI(selectedImageUri)
-                photo2.isDrawingCacheEnabled = true
-                photo2.buildDrawingCache(true)
-                val bitmap2: Bitmap? = photo2.drawingCache
-                if (bitmap2 != null) {
-                    // You have a valid Bitmap. You can use it here.
-                    intent.putExtra("photo2", bitmap2)
-                    Log.d("Photo2", "Photo converted to bitmap")
-                }
-
-                // Clean up the drawing cache
-                photo2.isDrawingCacheEnabled = false
+                imageUri2 = imageUri
+                photo2.setImageURI(imageUri2)
             }
         }
     }
