@@ -14,8 +14,11 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import java.util.ArrayList
 import kotlin.random.Random
 
@@ -40,10 +43,12 @@ class FinalReview : AppCompatActivity() {
     lateinit var submit: Button
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private  var storageRef = Firebase.storage
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_final_review)
+        storageRef = FirebaseStorage.getInstance()
         photo1 = findViewById(R.id.photo1)
         photo2 = findViewById(R.id.photo2)
         submit = findViewById(R.id.submit)
@@ -65,7 +70,7 @@ class FinalReview : AppCompatActivity() {
         database = Firebase.database.reference
 
         val intentFromDetails: Intent = intent
-        val photoOne = intentFromDetails.getParcelableExtra<Uri>("photo1", )
+        val photoOne: Uri? = intentFromDetails.getParcelableExtra<Uri>("photo1", )
         photo1.setImageURI(photoOne)
         val photoTwo = intentFromDetails.getParcelableExtra<Uri>("photo2", )
         photo2.setImageURI(photoTwo)
@@ -116,6 +121,29 @@ class FinalReview : AppCompatActivity() {
             val randomInt: Int = Random.nextInt(0, Int.MAX_VALUE)
             database.child(Firebase.auth.currentUser!!.uid).child(randomInt.toString()).setValue(property).addOnSuccessListener {
                 Toast.makeText(this , "updated in database" , Toast.LENGTH_SHORT).show()
+
+                if (photoOne != null) {
+                    storageRef.getReference(Firebase.auth.currentUser!!.uid).child(address_text.text.toString()+"image1")
+                        .putFile(photoOne)
+                        .addOnSuccessListener { task ->
+                            task.metadata!!.reference!!.downloadUrl
+                                .addOnSuccessListener {
+                                    val userId = auth.currentUser!!.uid
+                                    val mapImage = mapOf(
+                                        "url" to it.toString()
+                                    )
+                                    val databaseReference = FirebaseDatabase.getInstance().getReference("UserImages")
+                                    databaseReference.child(userId).setValue(mapImage)
+                                        .addOnSuccessListener {
+                                            Toast.makeText(this, "Succesfully Uploaded Image", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener {error ->
+                                            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+                                        }
+                                }
+                        }
+                }
+
             }
 
         }
