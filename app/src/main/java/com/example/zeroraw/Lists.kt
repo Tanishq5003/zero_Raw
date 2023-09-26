@@ -1,5 +1,6 @@
 package com.example.zeroraw
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
@@ -56,7 +57,18 @@ class Lists : AppCompatActivity() {
                         bitmap= BitmapFactory.decodeFile(localFile.absolutePath)
                     }
                     val bitmap1: Bitmap? = bitmap
-                    recyclerView.adapter = MyAdapter(userArrayList) }
+
+                    var adapter = MyAdapter(userArrayList)
+                    recyclerView.adapter = adapter
+                adapter.setonItemClickListner(object : MyAdapter.onItemClickListner{
+                    override fun onItemClick(pos: Int) {
+//                        Toast.makeText(this@Lists, "Clicked on ${pos+1}", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@Lists, selectedListing::class.java)
+                        intent.putExtra("address", addres)
+                        startActivity(intent)
+                    }
+
+                })}
                 }
 
             override fun onCancelled(error: DatabaseError) {

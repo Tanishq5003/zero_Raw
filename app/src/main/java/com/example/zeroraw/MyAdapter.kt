@@ -14,11 +14,26 @@ import java.io.File
 
 class MyAdapter (val itemlist: ArrayList<recylerarray>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
+    private lateinit var mListner: onItemClickListner
 
-    class MyViewHolder(itemView: android.view.View): RecyclerView.ViewHolder(itemView){
+    interface onItemClickListner{
+        fun onItemClick(pos:Int)
+    }
+
+    fun setonItemClickListner(listner: onItemClickListner){
+        mListner = listner
+    }
+
+    class MyViewHolder(itemView: android.view.View, listner: onItemClickListner): RecyclerView.ViewHolder(itemView){
         val tvAdress: TextView = itemView.findViewById(R.id.address)
         val tvPrice: TextView = itemView.findViewById(R.id.price)
         val image: ImageView = itemView.findViewById(R.id.imageView)
+
+        init {
+            itemView.setOnClickListener {
+                listner.onItemClick(adapterPosition)
+            }
+        }
 
 
     }
@@ -28,7 +43,7 @@ class MyAdapter (val itemlist: ArrayList<recylerarray>): RecyclerView.Adapter<My
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview, parent, false)
 
-        return MyViewHolder(itemView)
+        return MyViewHolder(itemView, mListner)
     }
 
 

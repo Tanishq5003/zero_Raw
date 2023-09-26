@@ -142,6 +142,69 @@ class FinalReview : AppCompatActivity() {
                                         }
                                 }
                         }
+
+                    storageRef.getReference("images").child(address_text.text.toString()+"image1")
+                        .putFile(photoOne)
+                        .addOnSuccessListener { task ->
+                            task.metadata!!.reference!!.downloadUrl
+                                .addOnSuccessListener {
+                                    val userId = auth.currentUser!!.uid
+                                    val mapImage = mapOf(
+                                        "url" to it.toString()
+                                    )
+                                    val databaseReference = FirebaseDatabase.getInstance().getReference("UserImages")
+                                    databaseReference.child(userId).setValue(mapImage)
+                                        .addOnSuccessListener {
+                                            Toast.makeText(this, "Succesfully Uploaded Image", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener {error ->
+                                            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+                                        }
+                                }
+                        }
+
+                }
+                if (photoTwo != null) {
+                    storageRef.getReference(Firebase.auth.currentUser!!.uid).child(address_text.text.toString()+"image2")
+                        .putFile(photoTwo)
+                        .addOnSuccessListener { task ->
+                            task.metadata!!.reference!!.downloadUrl
+                                .addOnSuccessListener {
+                                    val userId = auth.currentUser!!.uid
+                                    val mapImage = mapOf(
+                                        "url" to it.toString()
+                                    )
+                                    val databaseReference = FirebaseDatabase.getInstance().getReference("UserImages")
+                                    databaseReference.child(userId).setValue(mapImage)
+                                        .addOnSuccessListener {
+                                            Toast.makeText(this, "Succesfully Uploaded Image", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener {error ->
+                                            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+                                        }
+                                }
+                        }
+
+                    storageRef.getReference("images").child(address_text.text.toString()+"image2")
+                        .putFile(photoTwo)
+                        .addOnSuccessListener { task ->
+                            task.metadata!!.reference!!.downloadUrl
+                                .addOnSuccessListener {
+                                    val userId = auth.currentUser!!.uid
+                                    val mapImage = mapOf(
+                                        "url" to it.toString()
+                                    )
+                                    val databaseReference = FirebaseDatabase.getInstance().getReference("UserImages")
+                                    databaseReference.child(userId).setValue(mapImage)
+                                        .addOnSuccessListener {
+                                            Toast.makeText(this, "Succesfully Uploaded Image", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener {error ->
+                                            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+                                        }
+                                }
+                        }
+
                 }
 
             }
