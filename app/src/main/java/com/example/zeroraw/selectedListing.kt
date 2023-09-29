@@ -1,5 +1,6 @@
 package com.example.zeroraw
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -148,6 +149,30 @@ class selectedListing : AppCompatActivity() {
             .addOnFailureListener {
                 // The file does not exist
             }
+
+        delete.setOnClickListener {
+            database.addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (dataSnapshot in snapshot.children) {
+                            if (dataSnapshot.child("address")
+                                    .getValue(String::class.java) == address
+                            ) {
+                               val snap = dataSnapshot.ref
+                                snap.removeValue()
+                            }
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+            val intent = Intent(this, FirstPage::class.java)
+            startActivity(intent)
+        }
 
 
 

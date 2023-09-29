@@ -27,6 +27,16 @@ class Login : AppCompatActivity() {
             var text_pass = pass.text.toString()
             login_user(text_mail, text_pass)
         }
+        val forgot: Button = findViewById(R.id.forgot)
+        forgot.setOnClickListener {
+            auth.sendPasswordResetEmail(mail.text.toString())
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Reset link sent to your registered mail", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { error ->
+                    Toast.makeText(this, "$error", Toast.LENGTH_SHORT).show()
+                }
+        }
 
     }
 
